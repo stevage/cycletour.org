@@ -6,12 +6,12 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "deploy": "vue-cli-service build; rm -rf docs; mv src/dist ./docs"
-
+    "deploy": "vue-cli-service build; rm -rf docs; mv dist ./docs"
   },
   "dependencies": {
     "@mapbox/mapbox-gl-directions": "^4.0.0",
     "mapbox-gl": "^0.52.0",
+    "mapbox-gl-style-switcher": "^1.0.1",
     "vue": "^2.5.21"
   },
   "devDependencies": {

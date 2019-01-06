@@ -101,6 +101,9 @@ function initMap() {
     }, {
       title: 'Old cycletour',
       uri: oldCycletour
+    }, {
+      title: 'New cycletour',
+      uri: 'mapbox://styles/stevage/cjqk6ve931h5o2spctaxzuu4h'
     }
 ];
 

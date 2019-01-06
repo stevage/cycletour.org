@@ -11,7 +11,7 @@ import mapboxgl from 'mapbox-gl';
 import MapboxDirections from '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions';
 import { MapboxStyleSwitcherControl } from "mapbox-gl-style-switcher/dist/index";
 import "mapbox-gl-style-switcher/styles.css";
-
+const MD = MapboxDirections;
 // import { MapboxStyleDefinition, MapboxStyleSwitcherControl } from "mapbox-gl-style-switcher";
 export default {
   name: 'app',
@@ -29,9 +29,34 @@ function initMap() {
       center: [148,-36],
       zoom: 11
   });
+  window.map = map;
   map.addControl(new MapboxDirections({
       accessToken: mapboxgl.accessToken
   }), 'top-left');
+  // window.dl = require('@mapbox-gl-directions/dist/
+  let directionsLayers = [], directionsSource = {};
+  map.on('styledata', (e) => {
+    console.log(e);
+    const curStyle = map.getStyle();
+    if (directionsLayers.length === 0 && curStyle.sources['directions']) {
+      directionsLayers = curStyle.layers.filter(l => l.source === 'directions');
+      directionsSource = curStyle.sources['directions'];
+      window.directionsLayers = directionsLayers;
+    } else if (directionsLayers.length > 0) {
+      const newStyle = e.style.stylesheet;//map.getStyle();
+      if (!map.getSource('directions')) {
+          if (!map.getSource('directions')) {
+            // TODO: somehow preserve the old contents of this layer, so we don't lose directions when switching layer.
+            map.addSource('directions', directionsSource);
+          }
+          directionsLayers.forEach(l => {
+            if (!map.getLayer(l)) {
+              map.addLayer(l);
+            }
+          });
+      }
+    }
+  });
   
   const oldCycletour = {
     "version": 8,
@@ -74,7 +99,7 @@ function initMap() {
         title: "Light",
         uri:"mapbox://styles/mapbox/light-v9"
     }, {
-      title: 'Old-cycletour',
+      title: 'Old cycletour',
       uri: oldCycletour
     }
 ];

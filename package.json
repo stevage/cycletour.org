@@ -11,7 +11,7 @@
   "dependencies": {
     "@mapbox/mapbox-gl-directions": "^4.0.0",
     "mapbox-gl": "^0.52.0",
-    "mapbox-gl-style-switcher": "^1.0.1",
+    "mapbox-gl-style-switcher": "stevage/style-switcher",
     "vue": "^2.5.21"
   },
   "devDependencies": {

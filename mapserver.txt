@@ -1,0 +1,1 @@
+https://api.mapbox.com/v4/stevage.2xuscm8g/{z}/{x}/{y}.webp?access_token=pk.eyJ1Ijoic3RldmFnZSIsImEiOiJGcW03aExzIn0.QUkUmTGIO3gGt83HiRIjQw
